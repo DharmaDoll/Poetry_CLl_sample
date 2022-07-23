@@ -1,16 +1,22 @@
-# Setting up python environment and initializing packages and dockerize
+# Setting up poetry and create poetry application.
+
 ```sh
-# Install poetry
 pyenv version 3.8.0
 which python
 # /Users/taro/.pyenv/shims/python
-
+```
+#### Install poetry
+```sh
 sudo pip install poetry
+```
+```
 poetry -V
 poetry config --list
-
-#Create package
+```
+#### Create package
+```sh
 poetry new fire_sample_pkg
+
 tree fire_sample_pkg
 # fire_sample_pkg
 # ├── README.rst
@@ -20,47 +26,37 @@ tree fire_sample_pkg
 # └── tests
 #     ├── __init__.py
 #     └── test_fire_sample_pkg.py
+
 cd fire_sample_pkg
 poetry env info
-# Virtualenv
-# Python:         3.8.0
-# Implementation: CPython
-# Path:           NA
+#Virtualenv
+#Python:         3.10.5
+#Implementation: CPython
+#Path:           NA
 
-# System
-# Platform: darwin
-# OS:       posix
-# Python:   /Users/taro/.pyenv/versions/3.8.0
-poetry add fire #If you don't have an environment yet, create virtual environment.
-poetry env list
-# fire-sample-pkg-LmRj2E63-py3.8 (Activated)
+#System
+#Platform: linux
+#OS:       posix
+#Python:   /usr
+```
+#### Add packages(If you don't have an environment yet, create virtual environment)
+```sh
+poetry add fire 
+```
+```sh
+poetry env info
+#Virtualenv
+#Python:         3.10.5
+#Implementation: CPython
+#Path:           /home/mike/.cache/pypoetry/virtualenvs/fire-sample-pkg-9Hcw8gMH-py3.10
+#Valid:          True
+#...
 
 poetry shell
-# Spawning shell within /Users/taro/Library/Caches/pypoetry/virtualenvs/fire-sample-pkg-LmRj2E63-py3.8
 which python
-# /Users/taro/Library/Caches/pypoetry/virtualenvs/fire-sample-pkg-LmRj2E63-py3.8/bin/python
-# (fire-sample-pkg-LmRj2E63-py3.8)
+#/home/mike/.cache/pypoetry/virtualenvs/fire-sample-pkg-9Hcw8gMH-py3.10/bin/python
 ```
 
-
-
-## Create command line tool to virtual environment
-```sh
-#Create main file
-vim fire_sample_pkg/fire_sample.py
-
-# #Add setting bellow.
-vim pyproject.toml
-# [tool.poetry.scripts]
-# mycli = "fire_sample_pkg.fire_sample:main"
-#こんな感じで bin/配下にmycliファイルが作られる。　from fire_sample_pkg.fire_sample import main
-
-#仮想環境にインストール
-poetry install
-
-$ which mycli
-# /Users/taro/Library/Caches/pypoetry/virtualenvs/fire-sample-pkg-LmRj2E63-py3.8/bin/mycli
-```
 
 ## Packaging
 new→build→publishの3コマンドでプロジェクト作成からPyPIに登録までできる
@@ -98,9 +94,3 @@ poetry config repositories.xxxtestxxx https://test.pypi.org/legacy/
 # TestPyPIへのアップロードは https://test.pypi.org/legacy のほうじゃないとダメです。https://test.pypi.org/simple だと失敗します。（実は記事執筆時点の最新版のPoetryだと成功してる風な出力になりますが実際にはアップロードできてなくて、試しにtwineでアップロードしてみると405エラーになります。）
 ```
 See Also..  https://kk6.hateblo.jp/entry/2018/12/20/124151#TestPyPIへアップロードできるようにする
-
-# Dockerize!
-TDB  
-
-ref to `shellscripts/tree/master/Dockerfiles/mern-docker-compose`  
-`/createPkg/FromPoetry/fire_sample_pkg/Dockerfile`
