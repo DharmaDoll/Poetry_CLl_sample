@@ -57,6 +57,8 @@ which python
 #/home/mike/.cache/pypoetry/virtualenvs/fire-sample-pkg-9Hcw8gMH-py3.10/bin/python
 ```
 
+## Using Docker
+https://github.com/DharmaDoll/Poetry_CLl_sample/tree/main/fire_sample_pkg
 
 ## Packaging
 new→build→publishの3コマンドでプロジェクト作成からPyPIに登録までできる
